@@ -1,3 +1,5 @@
+<img align="right" width="140" style="margin-top:-20px" src="https://cdn.pedrin268.dev/uniopet.png">
+
 # UniOpet Tasks
 
 UniOpet Tasks é um sistema web simples para gerenciamento de tarefas pessoais e em grupo, desenvolvido para facilitar a organização de atividades acadêmicas ou profissionais. O projeto possui autenticação de usuários, cadastro, login, e permite criar, concluir e excluir tarefas.
