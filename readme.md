@@ -67,9 +67,5 @@ UniOpet Tasks é um sistema web simples para gerenciamento de tarefas pessoais e
 5. Marque tarefas como concluídas ou exclua conforme necessário.
 6. Use o botão de alternar tema para modo claro/escuro.
 
-## Licença
-
-Este projeto é livre para uso acadêmico e pessoal.
-
 ---
 Desenvolvido por Pedro EGS_01
