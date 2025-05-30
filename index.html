@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="src/css/style.css">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <title>UniOpet Tasks</title>
+</head>
+
+<!-- Modo Escuro -->
+
+<body>
+  <div class="theme-toggle" id="themeToggle" title="Alternar tema">
+    <span id="themeIcon">🌙</span>
+  </div>
+
+  <!-- Logo no topo (exibida apenas no login/cadastro) -->
+  <div id="logo-topo">
+    <img src="https://cdn.pedrin268.dev/uniopet.png" height="145" width="200" alt="Logo" class="logo">
+  </div>
+
+  <!-- Área de Login/Cadastro -->
+  <div class="container" id="formArea">
+    <div class="form-box" id="formLogin">
+      <h2>Entrar</h2>
+      <input type="email" id="login_email" placeholder="Email">
+      <input type="password" id="login_senha" placeholder="Senha">
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAABeaTpHmuhzlZg61"></div>
+      <button id="btnLogin" onclick="login()" disabled>Entrar</button>
+      <p>Não tem conta? <a href="#" onclick="mostrarCadastro()">Cadastrar</a></p>
+    </div>
+
+    <div class="form-box" id="formCadastro" style="display:none;">
+      <h2>Cadastrar</h2>
+      <input type="text" id="cad_nome" placeholder="Nome">
+      <input type="email" id="cad_email" placeholder="Email">
+      <input type="password" id="cad_senha" placeholder="Senha">
+      <input type="text" id="cad_convite" placeholder="Código de convite (opcional)">
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAABeaTpHmuhzlZg61"></div>
+      <button id="btnCadastro" onclick="registrar()" disabled>Cadastrar</button>
+      <p>Já tem conta? <a href="#" onclick="mostrarLogin()">Entrar</a></p>
+    </div>
+  </div>
+
+  <!-- Área de Tarefas -->
+  <div id="tarefas" class="layout-tarefas" style="display:none;">
+    <!-- Sidebar lateral -->
+    <aside class="sidebar">
+      <img src="https://cdn.pedrin268.dev/uniopet.png" class="logo-sidebar" alt="Logo UniOpet Tasks">
+      <h2 class="usuario-nome" id="nome_usuario"></h2>
+      <div class="listas">
+        <div class="lista-item">📋 Pessoais</div>
+        <div class="lista-item">📁 Grupo</div>
+      </div>
+      <div class="logout-container">
+        <button class="logout-btn" onclick="logout()">Sair</button>
+      </div>
+    </aside>
+
+    <!-- Conteúdo Principal -->
+    <main class="conteudo">
+      <h2 class="titulo-tarefas">Minhas Tarefas</h2>
+      <div class="tarefas-container">
+        <div class="card" id="card_pessoal">
+          <h3>Pessoais</h3>
+          <button onclick="mostrarForm('pessoal')">+ Adicionar tarefa</button>
+          <ul class="lista-tarefas" id="lista_pessoal"></ul>
+        </div>
+        <div class="card" id="card_grupo">
+          <h3>Grupo</h3>
+          <button onclick="mostrarForm('grupo')">+ Adicionar tarefa</button>
+          <ul class="lista-tarefas" id="lista_grupo"></ul>
+        </div>
+      </div>
+
+      <div id="formNovaTarefa" style="display:none; text-align:center; margin-top: 20px;">
+        <input type="text" id="nova_tarefa_titulo" placeholder="Título da tarefa">
+        <input type="hidden" id="nova_tarefa_origem">
+        <button onclick="adicionarTarefa()">Salvar</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="src/js/script.js"></script>
+
+  <script>
+
+    // Alternar entre login e cadastro
+    function mostrarCadastro() {
+      document.getElementById('formLogin').style.display = 'none';
+      document.getElementById('formCadastro').style.display = 'flex';
+    }
+    function mostrarLogin() {
+      document.getElementById('formCadastro').style.display = 'none';
+      document.getElementById('formLogin').style.display = 'flex';
+    }
+
+    // Tema escuro/claro
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    function setTheme(dark) {
+      document.body.classList.toggle('dark', dark);
+      themeIcon.textContent = dark ? '☀️' : '🌙';
+      localStorage.setItem('darkMode', dark ? '1' : '0');
+    }
+    themeToggle.onclick = () => setTheme(!document.body.classList.contains('dark'));
+    // Carregar preferência
+    setTheme(localStorage.getItem('darkMode') === '1');
+  </script>
+</body>
+
+</html>
